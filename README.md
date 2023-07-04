@@ -47,7 +47,7 @@ yarn install
 yarn start
 ```
 
-The React application should now be running on `http://localhost:3000`.
+The React application should now be running on `http://localhost:5173`.
 
 ## Configuration
 
