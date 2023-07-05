@@ -15,15 +15,13 @@ const LedButton = () => {
         const data = await response.json();
 
         // Extracting the values from the API response
-        const newFirstValue = data.Register0;
-        const newSecondValue = data.Register1;
-        const newThirdValue = data.Register2;
-
+        const newFirstValue = await data.Register0;
+        const newSecondValue = await data.Register1;
+        const newThirdValue = await data.Register2;
         // Updating the color based on the values
         setFirstValue(newFirstValue);
         setSecondValue(newSecondValue);
         setThirdValue(newThirdValue);
-        updateColor(newFirstValue, newSecondValue, thirdValue);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -44,16 +42,15 @@ const LedButton = () => {
 
   function getColor(redValue, blueValue, greenValue) {
   // Ensure redValue and blueValue are within the valid range (0-100)
+  greenValue = Math.max(0, Math.min(100, greenValue));
   redValue = Math.max(0, Math.min(100, redValue));
   blueValue = Math.max(0, Math.min(100, blueValue));
-  greenValue = Math.max(0, Math.min(100, greenValue));
-
-
   // Convert the RGB values to hexadecimal color representation
   const redHex = Math.floor((redValue / 100) * 255).toString(16).padStart(2, '0');
   const greenHex = Math.floor((greenValue / 100) * 255).toString(16).padStart(2, '0');
   const blueHex = Math.floor((blueValue / 100) * 255).toString(16).padStart(2, '0');
   // Return the color in the format "#RRGGBB"
+  console.log(`#${redHex}${greenHex}${blueHex}`);
   return `#${redHex}${greenHex}${blueHex}`;
 }
 
@@ -63,6 +60,10 @@ newColor = getColor(firstValue, secondValue, thirdValue);
     setColor(newColor);
   };
 
+
+useEffect(() => {
+  updateColor(firstValue, secondValue, thirdValue);
+}, [firstValue, secondValue, thirdValue]); 
   
 
   return (
