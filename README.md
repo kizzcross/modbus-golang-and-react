@@ -47,7 +47,7 @@ yarn install
 yarn start
 ```
 
-The React application should now be running on `http://localhost:3000`.
+The React application should now be running on `http://localhost:5173`.
 
 ## Configuration
 
@@ -58,7 +58,7 @@ Before running the project, you need to configure the Modbus connection details.
 
 ## Usage
 
-1. Open your web browser and visit `http://localhost:3000`.
+1. Open your web browser and visit `http://localhost:5173`.
 2. You should see the application interface displaying a color box.
 3. The backend server will continuously read the Modbus values and send them to the frontend.
 4. The color of the box will update dynamically based on the values received.
